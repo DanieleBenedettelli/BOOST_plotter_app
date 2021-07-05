@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LEGO BOOST Plotter Wizard</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<style>
+			.button {
+			  background-color: #4CAF50; /* Green */
+			  //border: none;
+			  color: white;
+			  padding: 10px 20px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 14px;
+			  border-radius: 4px;
+			  transition-duration: 0.2s;
+			  cursor: pointer;
+			  border: 2px solid #4CAF50; /* Green */
+			  
+			}
+			.button:hover {
+				background-color: white; /* Green */
+				color: #4CAF50;
+			}
+			.button:disabled,
+			.button[disabled]{
+			  border: 1px solid #999999;
+			  background-color: #cccccc;
+			  color: #666666;
+			}
+			.buttonRed {
+				background-color: #ED0000; /* Red */
+				border: 2px solid #ED0000; /* Green */
+			}
+			.buttonRed:hover {
+				background-color: white; /* Green */
+				color: #ED0000;
+			}
+			.buttonSmall{
+			  background-color: #4CAF50; /* Green */
+			  border: none;
+			  color: white;
+			  padding: 6px 10px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 14px;
+			  font-family: Courier;
+			  font-weight: bold;
+			  border-radius: 4px;
+			  transition-duration: 0.2s;
+			  cursor: pointer;
+			  border: 2px solid #4CAF50; /* Green */
+			}
+			.buttonSmall:hover {
+				background-color: white; /* Green */
+				color: #4CAF50;
+			}	
+			.slider {
+			  -webkit-appearance: none;
+			  width: 320px;
+			  height: 10px;
+			  border-radius: 5px;  
+			  background: #d3d3d3;
+			  outline: none;
+			  opacity: 0.7;
+			  -webkit-transition: .2s;
+			  transition: opacity .2s;
+			}
+
+			.slider::-webkit-slider-thumb {
+			  -webkit-appearance: none;
+			  appearance: none;
+			  width: 20px;
+			  height: 20px;
+			  border-radius: 50%; 
+			  background: #4CAF50;
+			  cursor: pointer;
+			  padding-bottom: 10px;
+			  padding-top: 10px;
+			}
+
+			.slider::-moz-range-thumb {
+			  width: 20px;
+			  height: 20px;
+			  border-radius: 50%;
+			  background: #4CAF50;
+			  cursor: pointer;
+			}	
+			
+			.slider:hover {
+			  opacity: 1;
+			}
+			
+			/* Customize the label (the container) */
+			.container {
+			  display: block;
+			  position: relative;
+			  padding-left: 35px;
+			  margin-bottom: 12px;
+			  cursor: pointer;
+			  font-size: 22px;
+			  -webkit-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+			}
+
+			/* Hide the browser's default checkbox */
+			.container input {
+			  position: absolute;
+			  opacity: 0;
+			  cursor: pointer;
+			  height: 0;
+			  width: 0;
+			}
+
+			/* Create a custom checkbox */
+			.checkmark {
+			  //position: absolute;
+			  top: 0;
+			  left: 0;
+			  height: 15px;
+			  width: 15px;
+			  background-color: #eee;
+			}
+
+			/* On mouse-over, add a grey background color */
+			.container:hover input ~ .checkmark {
+			  background-color: #ccc;
+			}
+
+			/* When the checkbox is checked, add a blue background */
+			.container input:checked ~ .checkmark {
+			  background-color: #2196F3;
+			}
+
+			/* Create the checkmark/indicator (hidden when not checked) */
+			.checkmark:after {
+			  content: "";
+			  position: absolute;
+			  display: none;
+			}
+
+			/* Show the checkmark when checked */
+			.container input:checked ~ .checkmark:after {
+			  display: block;
+			}
+
+			/* Style the checkmark/indicator */
+			.container .checkmark:after {
+			  left: 9px;
+			  top: 5px;
+			  width: 5px;
+			  height: 10px;
+			  border: solid white;
+			  border-width: 0 3px 3px 0;
+			  -webkit-transform: rotate(45deg);
+			  -ms-transform: rotate(45deg);
+			  transform: rotate(45deg);
+			}		
+			.spacer_div {
+			  height: 30px;
+			  width: 50%;
+			  //background-color: powderblue;
+			}		
+			
+			/* Style the button that is used to open and close the collapsible content */
+			.collapsible {
+			  background-color: #eee;
+			  box-sizing: border-box;
+			  color: #444;
+			  cursor: pointer;
+			  padding: 18px;
+			  width: 50%;
+			  border: 2px solid #ccc; /* Green */
+			  text-align: left;
+			  outline: none;
+			  font-size: 15px;
+			}
+
+			/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+			.active, .collapsible:hover {
+			  background-color: #ccc;
+			}
+
+			/* Style the collapsible content. Note: hidden by default */
+			.content {
+			  padding: 0 0px;
+			  display: none;
+			  overflow: hidden;
+			  background-color: #f1f1f1;
+			  vertical-align:top;
+			  text-align: left;			  
+			  horizontal-align:left; 
+			  font-family:Arial; 
+			  font-size:11pt;
+			}			
+		</style>
+		<META NAME=”robots” CONTENT=”noindex”>
+	</head>
+<body>
+<div align="center" width="50%" >
+<div class="spacer_div">
+</div>
+<h1 id="heading" align="center" style="font-family:Arial; font-size:20pt" >LEGO BOOST Plotter Wizard</h1>
+<center style="font-family:Arial; font-size:10pt"> &copy; Daniele Benedettelli 2021 - v 1.0 </center>
+
+<table align="center">
+<tr>
+<td style="text-align:center;vertical-align:top;horizontal-align:center" width="50%">
+<div id="previewDiv" align="center" style="padding-top:10px; padding-bottom:10px" >
+<img id="plotterImage" src="boost_plotter400.png" width="250px">
+<canvas id="canvas" width="96" height="126"></canvas>
+<br>
+<label id="statusLabel" style="font-family:Arial; font-size:10pt" for="progress">Disconnected</label>
+<!--<progress id="progressBar" value="0" max="100"> </progress>-->
+</div>
+<div id="imageControlsDiv" align="center" style="padding-top:10px; padding-bottom:10px" >
+<button id="zoomIn"  class="buttonSmall" onclick="zoom(-1)">+</button>
+<button id="fit"  class="buttonSmall" onclick="fitImage()">=</button>
+<button id="zoomOut"  class="buttonSmall" onclick="zoom(1)">-</button>
+</div>
+</td>
+<td align="center">
+
+<div id="imageControls" align="center">
+<input id="file-input" type="file" name="name" style="display: none;" accept="image/*"/>
+	<button id="load" class="button" onclick="loadClick()" width="200">Load image...</button>
+<!--	<button id="preview" class="button" onclick="draw(false)">Preview</button>
+	<button id="fit"  class="button" onclick="fitImage()">Fit</button>
+	<button id="clear" class="button" onclick="clearCanvas()">Clear</button> 
+	<div style="padding-top:20px; padding-bottom:20px" >
+	  <input type="checkbox" class="checkmark" id="thresholdCb" onclick="thresholdCheckBox()" checked="checked">
+	  <label style="font-family:Arial; font-size:15pt" for="volume">Filter</label>
+	</div>	-->
+	<div style="padding-top:10px; padding-bottom:10px">
+	  <input type="range" id="threshold-slider" class="slider" name="threshold" min="0" max="255" value ="60" >
+	  <label style="font-family:Arial; font-size:10pt" for="volume">Threshold</label>
+	</div>
+	<div style="padding-top:10px; padding-bottom:10px" >
+	  <input type="range" id="stroke-slider" class="slider" name="stroke" min="1" max="4" value = "1" >
+	  <label style="font-family:Arial; font-size:10pt" for="volume">Pen size</label>
+	</div>	
+</div>
+<div id="robotSection" align="center">
+<button id="toggleConnection" class="button" onclick="toggleConnection()">Connect</button>
+<!-- <button id="disconnect" class="button" onclick="disconnect()">Disconnect</button> -->
+<button id="loadPaper" class="button" onclick="loadPaper()">Load paper</button>
+<!-- <button id="resetPen" class="button" onclick="resetPen()">Reset Pen</button> -->
+</div>
+<div id="drawingSection" align="center" style="padding-top:10px; padding-bottom:10px" >
+<button id="draw" class="button" onclick="draw(true)">Draw!</button>
+<button id="stop" class="button" onclick="stop()">Stop</button>
+</div>
+
+</td>
+</tr>
+</table>
+
+
+<button type="button" class="collapsible">Guide in English <span style="align:right; float: right;" class="material-icons md-36">help</span> </button>
+<div class="content">
+
+<center> <h1> Usage guide </h1> </center>
+<ol>
+	<li> Click the <b>Load Image</b> button and select the image you want to draw from your drive. </li>
+	<li> Adjust the <b>Threshold</b> slider and check the result in the preview. </li>
+	<li> Adjust the image position by dragging the image in the preview. You can adjust its scale by using the mouse scrolling wheel or by clicking the <b>+/-</b> buttons. To reset the image, click on the <b>=</b> button. </li>
+	<li> If the pen you are using has a large tip, you can adjust the <b>Pen size</b> slider to make the plotter skip lines. </li>
+	<li> Click the <b>Connect</b> button to connect your BOOST plotter. A dialog should appear. Press the green button on your BOOST Hub to turn it on and make it discoverable,  select your hub from the dialog list and click on <b>Pair</b>.</li>
+	<li> Once the Hub is successfully connected, its LED should turn blue. Click on the <b>Load Paper</b> button and insert a sheet of paper in the plotter. Fold in half twice an A4 or Letter sheet of paper, to make it approx. 11cm (4.3 inches) wide. </li>
+	<li> Click on the <b>Draw</b> button to start drawing. </li>
+	<li> You can stop the process before completion by clicking the <b>Stop</b> button.</li>
+</ol>
+
+<center> <h2> Known Issues </h2> </center>
+<ul>
+	<li> This app is known to work on computers that have Bluetooth Low Energy antennas (BT 4.0 or greater) and run Chrome browser 90.0.4430.93 or later.</li>
+	<li> The Bluetooth connection can be established only if you are connected to the https:// version of this page (lock icon at the left of the address bar).</li>
+	<li> This app has not been tested on mobile devices. On Android 10, it detects the LEGO BOOST Hub, but can't establish a connection. </li>
+	<li> The drawing process can take up to 15 minutes. Make sure you have fresh batteries installed, to avoid your BOOST Hub to die in the middle of a drawing. </li>
+	<li> Keep the Chrome tab visible. If put in background, the process slows down to a crawl. </li>
+	<li> Please report problems in detail to the author. </li>
+</ul>
+
+</div>
+
+<button type="button" class="collapsible">Guida in Italiano <span style="align:right; float: right;" class="material-icons md-36">help</span></button>
+<div class="content">
+<center> <h1> Guida rapida </h1> </center>
+<ol>
+	<li> Clicca sul bottone <b>Load Image</b> e scegli l'immagine che vuoi riprodurre dalla memoria del tuo computer.</li>
+	<li> Regola lo slider <b>Threshold</b> per cambiare la soglia B/N applicata all'immagine, e controlla il risultato nell'anteprima.</li>
+	<li> Cambia l'inquadratura dell'immagine trascinando l'anteprima. Puoi cambiare l'ingrandimento usando la rotella del mouse o i bottoni <b>+/-</b>. Per reimpostare l'immagine, clicca sul bottone <b>=</b>. </li>
+	<li> Se stai usando una penna dalla punta larga, puoi regolare lo slider <b>Pen size</b> per far saltare al plotter alcune linee.</li>
+	<li> Clicca sul bottone <b>Connect</b> per connettere il tuo plotter. Dovrebbe apparire una finestra di dialogo. Premi il bottone verde del tuo BOOST Hub per accenderlo. Seleziona il tuo Hub dalla lista, e premi il bottone <b>Accoppia</b>.</li>
+	<li> Una volta connesso, la luce dell'Hub diventa blu. Clicca su <b>Load Paper</b> e inserisci un foglio di carta nel plotter. Puoi usare fogli A5 (piega a metà due volte un foglio da stampante), per ottenere un foglietto di circa 10.5 x 15cm. </li>
+	<li> Clicca sul pulsante <b>Draw</b> per avviare il plotter. </li>
+	<li> Puoi fermare il plotter cliccando sul bottone <b>Stop</b>.</li>
+</ol>
+
+<center> <h2> Problemi conosciuti </h2> </center>
+<ul>
+	<li> Questa app funziona su computer dotati di antenna Bluetooth Low Energy (Bluetooth 4.0 o superiore), su browser Chrome 90.0.4430.93 o successivi.</li>
+	<li> La connessione Bluetooth puo' essere stabilita solo se sei connesso alla versione https:// di questa pagina (a sinistra della barra dell'indirizzo ci deve essere l'icona di un lucchetto).</li>
+	<li> Questa app non è stata testata su dispositivi mobili. Su Android 10, riesce a rilevare il LEGO BOOST Hub, ma non riesce a stabilire una connessione. </li>
+	<li> Il disegno puo' durare fino a 15 minuti. Assicurati di avere installato batterie cariche, per evitare che il tuo plotter BOOST si spenga a metà di un disegno. </li>
+	<li> Tenere la scheda di Chrome visibile in primo piano. Se messa in secondo piano o ridotta a icona, il processo rallenta tantissimo. </li>
+	<li> Per favore, riporta all'autore eventuali problemi in dettaglio. </li>
+</ul>
+
+</div>
+
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!--<script src="poweredup.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/node-poweredup@latest/dist/browser/poweredup.js"></script>
+<script src="boost_image_plotter_mini.js"></script>
+
+<script>
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+	  content.style.width = "50%";
+    }
+  });
+}
+</script>
+</body>
+</html>
